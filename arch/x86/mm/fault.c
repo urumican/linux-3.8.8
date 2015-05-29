@@ -1230,6 +1230,12 @@ good_area:
 dotraplinkage void __kprobes
 do_page_fault(struct pt_regs *regs, unsigned long error_code)
 {
+/* Xin Li @EECS_OREGON_STATE */
+	struct task_struct *tsk;
+	tsk = current;
+	printk(KERN_DEBUG "Process[%d]: CALL do_page_fault(). \n\n", tsk->pid);
+/*****************************/
+	
 	exception_enter(regs);
 	__do_page_fault(regs, error_code);
 	exception_exit(regs);
