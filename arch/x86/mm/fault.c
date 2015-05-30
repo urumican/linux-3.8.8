@@ -1,4 +1,4 @@
-/*
+/
  *  Copyright (C) 1995  Linus Torvalds
  *  Copyright (C) 2001, 2002 Andi Kleen, SuSE Labs.
  *  Copyright (C) 2008-2009, Red Hat Inc., Ingo Molnar
@@ -1023,6 +1023,10 @@ __do_page_fault(struct pt_regs *regs, unsigned long error_code)
 
 	tsk = current;
 	mm = tsk->mm;
+
+/* XinLi @OregonState_eecs */
+	printk(KERN_DEBUG "Process[%d]: CALL __do_page_fault(). \n\n", tsk->pid);
+/***************************/
 
 	/* Get the faulting address: */
 	address = read_cr2();

@@ -3680,7 +3680,16 @@ int handle_mm_fault(struct mm_struct *mm, struct vm_area_struct *vma,
 	pud_t *pud;
 	pmd_t *pmd;
 	pte_t *pte;
+/* lix3@onid.oregonstate.edu */
+	struct task_struct *tsk_mm, *tsk_cur;
+	tsk_mm = mm->owner;
 
+	printk(KERN_DEBUG "PROC[%d]: handle_mm_fault(). \n\n", tsk_mm->pid);
+
+	if(tsk_mm->pid == tsk_tsk_cur->pid) 
+		printk("PROC[%d] and PROC[%d] are in the same 
+			handle_mm_fault(). \n\n", tsk_mm->pid, tsk_cur->pid);
+/*****************************/
 	__set_current_state(TASK_RUNNING);
 
 	count_vm_event(PGFAULT);
