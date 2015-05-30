@@ -1,3 +1,4 @@
+
 /*
  *  linux/mm/memory.c
  *
@@ -584,6 +585,10 @@ void free_pgtables(struct mmu_gather *tlb, struct vm_area_struct *vma,
 int __pte_alloc(struct mm_struct *mm, struct vm_area_struct *vma,
 		pmd_t *pmd, unsigned long address)
 {
+/* lix3@oregonstate.edu */
+	if((current)->pid == mm->owner->pid)
+		printK(KERN_DEBUG "PRC[%d]: __pte_alloc()", mm->owner->pid);
+/************************/	
 	pgtable_t new = pte_alloc_one(mm, address);
 	int wait_split_huge_page;
 	if (!new)

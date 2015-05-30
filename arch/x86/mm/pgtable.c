@@ -22,6 +22,10 @@ pte_t *pte_alloc_one_kernel(struct mm_struct *mm, unsigned long address)
 
 pgtable_t pte_alloc_one(struct mm_struct *mm, unsigned long address)
 {
+/* lix3@onid.oregonstate.edu */
+	if(mm->owner->pid == (current)->pid)
+		printk(KERN_DEBUG "PROC[%d]: pet_alloc_one().", mm->owner->pid);
+/*****************************/
 	struct page *pte;
 
 	pte = alloc_pages(__userpte_alloc_gfp, 0);
