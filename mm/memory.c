@@ -3691,7 +3691,7 @@ int handle_mm_fault(struct mm_struct *mm, struct vm_area_struct *vma,
 
 	printk(KERN_DEBUG "PROC[%d]: handle_mm_fault(). \n\n", tsk_mm->pid);
 
-	if(tsk_mm->pid == tsk_tsk_cur->pid) 
+	if(tsk_mm->pid == tsk_cur->pid) 
 		printk(KERN_DEBUG "PROC[%d] and PROC[%d] are in the same" 
 			"handle_mm_fault(). \n\n", tsk_mm->pid, tsk_cur->pid);
 /*****************************/
